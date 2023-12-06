@@ -111,9 +111,23 @@ async function findUserbyId(userId,done){
         done(error)
     }
 }
+async function findUsers(done){
+    try {
+        const userArr = await User.find()
+        done(null,userArr)
+        return userArr.map((e)=>{
+            return {username:e.username, _id:e._id}
+        })
+    } catch (error) {
+        done(error)
+    }
+/*    return userArr.map((e)=>{
+        return {username:e.username, _id:e._id}
+    })*/
+}
 
 
 
-module.exports = {connectDb, createUser,findbyname,findUserbyId,createExercise,searchExercices}
+module.exports = {connectDb, createUser,findbyname,findUserbyId,findUsers,createExercise,searchExercices}
 
 

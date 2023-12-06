@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {connectDb,createUser,findbyname,findUserbyId, createExercise,searchExercices} = require('./mongoqueries.js');
+const {connectDb,createUser,findbyname,findUserbyId,findUsers,createExercise,searchExercices} = require('./mongoqueries.js');
 connectDb();
 const express = require('express');
 const cors = require('cors');
@@ -20,6 +20,11 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/views/index.html");
 })
 app.post('/asd/',(req,res)=>{
+
+})
+app.get('/api/users/',async (req,res)=>{
+    const userArr = await findUsers(done)
+    res.json(userArr)
 
 })
 
